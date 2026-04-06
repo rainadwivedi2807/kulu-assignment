@@ -6,6 +6,11 @@ import { Play, Activity, Clock, Copy, Check, ChevronDown, Globe } from 'lucide-r
 import type { OpenAPIOperation } from '../types/openapi'
 import { useAuth } from '../context/useAuth'
 
+// Editor: CodeMirror 6
+import CodeMirror from '@uiw/react-codemirror'
+import { json } from '@codemirror/lang-json'
+import { oneDark } from '@codemirror/theme-one-dark'
+
 /* ── Types ────────────────────────────────────────────────── */
 
 type Environment = 'sandbox' | 'staging' | 'production'
@@ -450,12 +455,33 @@ export function SandboxPage() {
               {/* Request Body */}
               {['post', 'put', 'patch'].includes(endpoint.method) && endpoint.operation.requestBody && (
                 <div className="space-y-3">
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400">Request Body (JSON)</h3>
-                  <textarea rows={6}
-                    className="w-full font-mono text-sm bg-slate-900 text-indigo-300 p-4 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none resize-y"
-                    placeholder={'{\n  // Provide valid JSON here\n}'}
-                    value={requestBody} onChange={e => setRequestBody(e.target.value)}
-                  />
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400">Request Body (JSON)</h3>
+                    <button 
+                      type="button"
+                      onClick={() => {
+                        try {
+                          const parsed = JSON.parse(requestBody);
+                          setRequestBody(JSON.stringify(parsed, null, 2));
+                        } catch (e) {
+                          // Ignore if invalid JSON
+                        }
+                      }}
+                      className="text-[10px] font-black text-indigo-500 uppercase hover:underline"
+                    >
+                      Prettify JSON
+                    </button>
+                  </div>
+                  <div className="rounded-xl overflow-hidden border border-slate-800 shadow-lg">
+                    <CodeMirror
+                      value={requestBody}
+                      height="240px"
+                      theme={oneDark}
+                      extensions={[json()]}
+                      onChange={(value) => setRequestBody(value)}
+                      className="text-sm font-mono"
+                    />
+                  </div>
                 </div>
               )}
 
