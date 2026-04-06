@@ -59,12 +59,12 @@ jobs:
 
       # 8. Preview deploy to Vercel (Bonus)
       # Automatically comments on the PR with the preview URL when configured
-      - name: Deploy Preview to Vercel
-        uses: amondnet/vercel-action@v20
-        if: github.event_name == 'pull_request'
-        id: vercel_preview
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Deploy Preview to Vercel
+      #   uses: amondnet/vercel-action@v20
+      #   if: github.event_name == 'pull_request'
+      #   id: vercel_preview
+      #   with:
+      #     vercel-token: ${{ secrets.VERCEL_TOKEN }}
+      #     vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+      #     vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
