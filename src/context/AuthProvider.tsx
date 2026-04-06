@@ -4,7 +4,6 @@ import { supabase } from '../lib/supabase'
 import { queryClient } from '../lib/queryClient'
 import { AuthContext } from './AuthContext'
 
-// Global listener (replaces useEffect!)
 supabase.auth.onAuthStateChange((_event, session) => {
   queryClient.setQueryData(['auth', 'session'], session)
 })

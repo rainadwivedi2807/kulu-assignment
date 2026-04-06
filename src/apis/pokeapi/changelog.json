@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "version": "2.0.0",
+    "date": "2023-11-01",
+    "changes": [
+      "Added support for regional forms.",
+      "Optimised query parameter pagination speeds."
+    ]
+  }
+]

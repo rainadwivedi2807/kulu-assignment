@@ -4,6 +4,8 @@ import { ProtectedRoute } from './components/auth/ProtectedRoute'
 import { DashboardLayout } from './components/layout/DashboardLayout'
 import { QueryProvider } from './components/layout/QueryProvider'
 import LoginPage from './pages/LoginPage'
+import { ApiDocPage } from './pages/ApiDocPage'
+import { API_REGISTRY } from './apis/api-registry'
 import zapIcon from './assets/zap-icon.svg'
 
 function Page({ title, description }: { title: string; description: string }) {
@@ -57,21 +59,20 @@ function App() {
                           />
                         }
                       />
+                      <Route 
+                        path="/docs/:apiId" 
+                        element={<ApiDocPage />} 
+                      />
                       <Route
                         path="/docs"
-                        element={
-                          <Page
-                            title="API Catalogue & Documentation"
-                            description="Explore our API reference, endpoints, schemas, and integration guides."
-                          />
-                        }
+                        element={<Navigate to={`/docs/${API_REGISTRY[0]?.id}`} replace />}
                       />
                       <Route
                         path="/sandbox"
                         element={
                           <Page
                             title="Interactive Sandbox"
-                            description="Test live API requests directly in the browser using data sources."
+                            description="Test live API requests directly in the browser."
                           />
                         }
                       />
