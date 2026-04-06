@@ -5,6 +5,7 @@ import { DashboardLayout } from './components/layout/DashboardLayout'
 import { QueryProvider } from './components/layout/QueryProvider'
 import LoginPage from './pages/LoginPage'
 import { ApiDocPage } from './pages/ApiDocPage'
+import { SandboxPage } from './pages/SandboxPage'
 import { API_REGISTRY } from './apis/api-registry'
 import zapIcon from './assets/zap-icon.svg'
 
@@ -69,12 +70,7 @@ function App() {
                       />
                       <Route
                         path="/sandbox"
-                        element={
-                          <Page
-                            title="Interactive Sandbox"
-                            description="Test live API requests directly in the browser."
-                          />
-                        }
+                        element={<SandboxPage />}
                       />
                       <Route
                         path="/keys"
