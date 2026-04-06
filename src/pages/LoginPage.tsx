@@ -57,9 +57,12 @@ export default function LoginPage() {
           navigate(from, { replace: true })
         }
       } else {
-        const { error: signupError } = await signUp(email, password)
+        const { data, error: signupError } = await signUp(email, password)
         if (signupError) {
           setGlobalError(signupError.message)
+        } else if (data?.session) {
+          // If "Confirm Email" is OFF, we get a session immediately
+          navigate(from, { replace: true })
         } else {
           setSignupSuccess(true)
         }

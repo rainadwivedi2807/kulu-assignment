@@ -8,7 +8,7 @@ export interface AuthState {
 }
 
 export interface AuthContextValue extends AuthState {
-  signUp: (email: string, password: string) => Promise<{ error: AuthError | null }>
+  signUp: (email: string, password: string) => Promise<{ data: any; error: AuthError | null }>
   signIn: (email: string, password: string) => Promise<{ error: AuthError | null }>
   signOut: () => Promise<void>
 }
