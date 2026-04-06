@@ -7,6 +7,9 @@ import LoginPage from './pages/LoginPage'
 import { ApiDocPage } from './pages/ApiDocPage'
 import { SandboxPage } from './pages/SandboxPage'
 import { ApiKeyPage } from './pages/ApiKeyPage'
+import { AnalyticsPage } from './pages/AnalyticsPage'
+import { StatusPage } from './pages/StatusPage'
+import { ChangelogPage } from './pages/ChangelogPage'
 import { API_REGISTRY } from './apis/api-registry'
 import zapIcon from './assets/zap-icon.svg'
 
@@ -79,30 +82,15 @@ function App() {
                       />
                       <Route
                         path="/analytics"
-                        element={
-                          <Page
-                            title="Usage Analytics Dashboard"
-                            description="Monitor your API usage, rate limits, and latency metrics."
-                          />
-                        }
+                        element={<AnalyticsPage />}
                       />
                       <Route
                         path="/status"
-                        element={
-                          <Page
-                            title="API Status Page"
-                            description="View system uptime, historical operational status, and active incidents."
-                          />
-                        }
+                        element={<StatusPage />}
                       />
                       <Route
                         path="/changelog"
-                        element={
-                          <Page
-                            title="Changelog"
-                            description="Stay up to date with new features, API versions, and breaking changes."
-                          />
-                        }
+                        element={<ChangelogPage />}
                       />
                     </Routes>
                   </DashboardLayout>

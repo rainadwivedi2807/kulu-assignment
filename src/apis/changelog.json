@@ -1,0 +1,42 @@
+[
+  {
+    "id": "v2.1.2",
+    "api": "Core Payments",
+    "type": "FIX",
+    "date": "2026-04-12",
+    "title": "Improved Latency for /v1/payments/initiate",
+    "description": "Optimized the database query logic for initial payment state creation, reducing p95 latency by ~45ms."
+  },
+  {
+    "id": "v2.1.1",
+    "api": "Accounts & KYC",
+    "type": "FEATURE",
+    "date": "2026-04-05",
+    "title": "OAuth 2.0 Support (Beta)",
+    "description": "Introduced support for standard OAuth 2.0 flows for third-party integration partners. See the Docs for implementation details."
+  },
+  {
+    "id": "v2.0.4",
+    "api": "Core Payments",
+    "type": "BREAKING",
+    "date": "2026-03-22",
+    "title": "Mandatory Header Change",
+    "description": "The `X-Kulu-Trace-Id` header is now strictly required for all POST requests. Requests without this header will return a 400 Bad Request."
+  },
+  {
+    "id": "v1.9.8",
+    "api": "Webhooks & Messaging",
+    "type": "FEATURE",
+    "date": "2026-03-10",
+    "title": "Slack Integration Webhooks",
+    "description": "New webhook types specifically formatted for direct Slack Incoming Webhook integration."
+  },
+  {
+    "id": "v2.0.3",
+    "api": "Core Payments",
+    "type": "FIX",
+    "date": "2026-02-28",
+    "title": "Incorrect Currency Mapping",
+    "description": "Fixed an edge case where UGX transactions were occasionally mapped to USD in the secondary reporting layer."
+  }
+]

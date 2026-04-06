@@ -146,3 +146,19 @@ Without the `clientMask` handshake, the backend would have to send the `plain_te
 | Usage Analytics      | `/analytics`      |
 | API Status           | `/status`         |
 | Changelog            | `/changelog`      |
+
+---
+
+## 🏗️ Mock Data & Future Integrations
+
+To provide a high-fidelity visual experience during the development and evaluation phase, the following sections currently utilize **Mock Data Generators**:
+
+1.  **Usage Analytics (`/analytics`)**: The time-series traffic charts, error rates, and endpoint latency metrics are generated using `date-fns` and randomized distributions to simulate a production environment.
+2.  **API Status (`/status`)**: The 90-day uptime aggregate and current service health indicators (Operational/Degraded) are statically defined based on a sample incident scenario.
+3.  **Changelog (`/changelog`)**: The version history and update feed are loaded from a static JSON manifest (`src/apis/changelog.json`).
+
+### Integration Strategy
+In a production deployment, these components are designed to be swapped with:
+- **Analytics**: A connection to a telemetry database (e.g., ClickHouse or Supabase Edge Functions logs).
+- **Status**: An integration with a monitoring service (e.g., Checkly or BetterStack API).
+- **Changelog**: A CMS-driven or database-backed table for dynamic update management.

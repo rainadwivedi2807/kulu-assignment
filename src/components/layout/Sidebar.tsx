@@ -51,9 +51,6 @@ export function Sidebar() {
           <h1 className="text-xl font-bold text-white tracking-tight">
             Developer Portal
           </h1>
-          <p className="text-xs text-slate-400 font-medium tracking-wider uppercase mt-1">
-            Kulu API
-          </p>
         </div>
       </div>
 
