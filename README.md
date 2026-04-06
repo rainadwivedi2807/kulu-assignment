@@ -71,13 +71,27 @@ src/
 └── App.tsx                # Router + AuthProvider wiring
 ```
 
-## 🔌 Adding a Second API (< 5 minutes)
+## 🔌 Dynamic API Registration Flow
 
-1. Drop your `openapi.json` into `src/apis/<api-name>/openapi.json`
-2. Register it in `src/apis/api-registry.ts`
-3. Done — the Catalogue and Sandbox automatically pick it up
+The entire developer portal — including the API Catalogue sidebar, the Endpoint documentation viewer, and the Interactive Sandbox — is completely data-driven. This means you do not need to build custom UI components to add a new API product.
 
----
+### The Flow: How it works under the hood
+
+1. **`openapi.json` as the source of truth**: The metadata (endpoints, paths, parameters, request bodies) is populated directly from an OpenAPI standard v3 JSON specification.
+2. **Centralized Registry (`api-registry.ts`)**: The application relies on `API_REGISTRY` exported from `src/apis/api-registry.ts`. When a new entry is added to this array, the entire application dynamically reacts to it.
+3. **Component Injection**:
+    - The `Sidebar.tsx` maps over `API_REGISTRY` to auto-generate navigation sidebar links dynamically.
+    - The `SandboxPage.tsx` builds the "Target API" dropdown list and dynamically reads the endpoints and schema configurations to build input forms for parameters and headers.
+    - The `ApiDocPage.tsx` interprets the OpenAPI paths and generates the parameter tables and status code response blocks.
+
+### Adding a new API (< 5 minutes)
+
+Adding a completely new set of endpoints requires exactly zero lines of React/UI code changes:
+
+1. Create a new folder for your API inside `src/apis/` (e.g., `src/apis/weather/`)
+2. Drop your `openapi.json` specification file in that folder.
+3. Import that JSON and add a new object to the `API_REGISTRY` array in `src/apis/api-registry.ts`.
+4. **Done:** The Catalogue, Sidebar navigations, and Interactive Sandbox automatically pick it up and surface it to your developers.
 
 ## Portal Sections
 
