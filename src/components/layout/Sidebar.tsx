@@ -12,7 +12,7 @@ import {
 } from 'lucide-react'
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
-import { useAuth } from '../../context/AuthContext'
+import { useAuth } from '../../context/useAuth'
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))

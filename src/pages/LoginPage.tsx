@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { Zap, AlertCircle, ArrowRight, CheckCircle2 } from 'lucide-react'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../context/useAuth'
 import { InputField } from '../components/ui'
 
 type Mode = 'login' | 'signup'
