@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Setup & Install
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # 2. Dependency vulnerability scan (Bonus)
+      - name: Security Audit
+        run: npm audit --audit-level=high
+
+      # 3. Code Quality (Linting & TypeScript)
+      - name: Lint Code
+        run: npm run lint
+
+      - name: Type-check
+        run: npm run type-check
+
+      # 4. Testing
+      - name: Run Unit Tests
+        run: npm test -- --run
+
+      # 5. Production Build
+      - name: Build
+        run: npm run build
+
+      # 6. Bundle Size Check (Bonus)
+      - name: Bundle Size Check
+        run: npx size-limit
+
+      # 7. Lighthouse CI Performance Check (Bonus)
+      - name: Lighthouse CI Score Check
+        run: |
+          npm install -g @lhci/cli
+          lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      # 8. Preview deploy to Vercel (Bonus)
+      # Automatically comments on the PR with the preview URL when configured
+      - name: Deploy Preview to Vercel
+        uses: amondnet/vercel-action@v20
+        if: github.event_name == 'pull_request'
+        id: vercel_preview
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
