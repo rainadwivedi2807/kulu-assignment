@@ -1,11 +1,11 @@
-import type { ApiDefinition, OpenAPIObject, ChangelogEntry } from '../types/openapi'
+import type { ApiDefinition, OpenAPIObject } from '../types/openapi'
 
 import pokeapiSpecJson from './pokeapi/openapi.json'
 import pokeapiChangelogJson from './pokeapi/changelog.json'
-import weatherSpecJson from './weather/openapi.json'
+import stubReviewerSpecJson from './stub-reviewer/openapi.json'
 
 const pokeapiSpec = pokeapiSpecJson as unknown as OpenAPIObject
-const weatherSpec = weatherSpecJson as unknown as OpenAPIObject
+const stubReviewerSpec = stubReviewerSpecJson as unknown as OpenAPIObject
 
 export const API_REGISTRY: ApiDefinition[] = [
   {
@@ -13,19 +13,18 @@ export const API_REGISTRY: ApiDefinition[] = [
     name: "PokéAPI",
     version: "2.0.0",
     spec: pokeapiSpec,
-    docsFile: "./pokeapi/docs.md",
-    changelog: pokeapiChangelogJson as ChangelogEntry[],
     baseUrl: "https://pokeapi.co/api/v2",
+    changelog: pokeapiChangelogJson,
     sdks: [
       { lang: 'JavaScript', install: 'npm install pokeapi-js-wrapper', repo: 'https://github.com/PokeAPI/pokeapi-js-wrapper' }
     ]
   },
   {
-    id: "weather",
-    name: "Open-Meteo Weather API",
+    id: "stub-reviewer",
+    name: "Reviewer Custom API",
     version: "1.0.0",
-    spec: weatherSpec,
-    baseUrl: "https://api.open-meteo.com",
+    spec: stubReviewerSpec,
+    baseUrl: "https://api.example.com",
     changelog: [],
     sdks: []
   }

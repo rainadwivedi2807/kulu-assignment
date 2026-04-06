@@ -1,0 +1,21 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Reviewer Custom API",
+    "version": "1.0.0",
+    "description": " Replace this whole object with any valid OpenAPI 3.x specification into this file. It is pre-wired to show up in the developer portal dynamically!"
+  },
+  "paths": {
+    "/ping": {
+      "get": {
+        "summary": "Placeholder endpoint",
+        "operationId": "ping",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

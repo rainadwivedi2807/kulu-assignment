@@ -125,10 +125,11 @@ async function executeApiRequest(req: SandboxRequest): Promise<SandboxResponse> 
   const latencyMs = Math.round(performance.now() - t0)
 
   let data: unknown
+  const text = await res.text()
   try {
-    data = await res.json()
+    data = JSON.parse(text)
   } catch {
-    data = await res.text()
+    data = text
   }
 
   const responseHeaders: Record<string, string> = {}
@@ -198,9 +199,6 @@ function SnippetPanel({ url, method, headers, body }: { url: string; method: str
     </div>
   )
 }
-
-/* ── Main Sandbox Page ────────────────────────────────────── */
-
 export function SandboxPage() {
   const { session } = useAuth()
   const authToken = session?.access_token
@@ -316,7 +314,6 @@ export function SandboxPage() {
 
   return (
     <div className="max-w-7xl mx-auto py-8 animate-in fade-in duration-500 min-h-screen">
-      {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
         <div>
           <h1 className="text-3xl font-bold text-slate-900 flex items-center gap-3">
@@ -535,7 +532,6 @@ export function SandboxPage() {
                   <span className="text-slate-600 text-xs font-mono break-all">{mutation.data.requestUrl}</span>
                 </div>
 
-                {/* Response Payload */}
                 <div>
                   <span className="text-xs text-indigo-400 font-bold uppercase tracking-wider mb-2 block">Response</span>
                   <CodeBlock
@@ -546,7 +542,6 @@ export function SandboxPage() {
                   />
                 </div>
 
-                {/* Headers */}
                 {Object.keys(mutation.data.headers).length > 0 && (
                   <div>
                     <span className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-2 block">Response Headers</span>

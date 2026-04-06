@@ -52,6 +52,24 @@ VITE_SUPABASE_ANON_KEY=eyJ...
 
 4. Enable **Email** provider under **Authentication → Providers** in the Supabase dashboard.
 
+### How to Create a Test User
+
+There are two ways to create a test user to log in to the portal:
+
+**1. Using the UI (Sign Up)**
+- Open the application at `http://localhost:5173/login`
+- Click the "Create Account / Sign Up" tab.
+- Enter an email and a password (min 8 characters).
+- Click "Create Account". You will automatically be signed in.
+
+**2. Directly via Supabase Dashboard**
+- Go to your Supabase Project dashboard.
+- Navigate to **Authentication → Users**.
+- Click the **Add User** → **Create new user** button.
+- Provide a test email (e.g. `test@example.com`) and a password.
+- Check "Auto Confirm User".
+- Click "Create User". You can now use these credentials to sign in to the portal.
+
 ---
 
 ## 🗂 Project Structure

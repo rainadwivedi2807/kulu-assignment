@@ -87,6 +87,44 @@
           }
         }
       }
+    },
+    "/pokemon/favorites": {
+      "post": {
+        "summary": "Simulated: Add to Favorites",
+        "description": "A demo-only endpoint to test POST requests and JSON bodies in the sandbox.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pokemon_name": { "type": "string" },
+                  "notes": { "type": "string" },
+                  "is_primary": { "type": "boolean" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Simulated: Successfully added to favorites",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" },
+                    "mock_id": { "type": "integer" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
