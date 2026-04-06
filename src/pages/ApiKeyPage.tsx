@@ -105,7 +105,7 @@ export function ApiKeyPage() {
       setEnvironment('sandbox')
       setExpiryDate('')
     },
-    onError: (err: any) => {
+    onError: (err: Error) => {
       setErrorMessage(err.message || 'Failed to generate key. Ensure you have run the Supabase SQL setup.')
     }
   })
@@ -124,7 +124,7 @@ export function ApiKeyPage() {
       setErrorMessage(null)
       queryClient.invalidateQueries({ queryKey: ['api-keys'] })
     },
-    onError: (err: any) => {
+    onError: (err: Error) => {
       setErrorMessage(err.message || 'Failed to revoke key.')
       setRevokingKeyId(null)
     }
