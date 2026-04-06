@@ -1,5 +1,5 @@
-import React from 'react';
-import { Sidebar } from './Sidebar';
+import React from 'react'
+import { Sidebar } from './Sidebar'
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -11,16 +11,14 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
           <div className="flex items-center gap-4">
             <div className="px-3 py-1 bg-green-50 text-green-700 text-sm font-medium rounded-full border border-green-200 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-              All Systems Operational
+              More Features Coming Soon
             </div>
           </div>
         </header>
         <main className="flex-1 p-8 overflow-auto">
-          <div className="max-w-6xl mx-auto">
-            {children}
-          </div>
+          <div className="max-w-6xl mx-auto">{children}</div>
         </main>
       </div>
     </div>
-  );
+  )
 }
