@@ -88,7 +88,7 @@ export function EndpointDetails({ path, method, operation }: EndpointDetailsProp
                             {p.required && <span className="ml-2 text-[10px] text-red-500 font-bold uppercase">Required</span>}
                           </td>
                           <td className="px-4 py-3 text-slate-500 font-mono text-xs">{p.in}</td>
-                          <td className="px-4 py-3 text-indigo-600 font-mono text-xs">{String(p.schema?.type ?? 'string')}</td>
+                          <td className="px-4 py-3 text-indigo-600 font-mono text-xs">{(p.schema?.type as string) || 'string'}</td>
                           <td className="px-4 py-3 text-slate-500 whitespace-normal">{p.description || '-'}</td>
                         </tr>
                       ))}

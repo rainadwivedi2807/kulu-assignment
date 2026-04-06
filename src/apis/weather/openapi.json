@@ -1,0 +1,50 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Open-Meteo Weather API",
+    "version": "1.0.0",
+    "description": "Free open-source weather API with no API key required."
+  },
+  "paths": {
+    "/v1/forecast": {
+      "get": {
+        "summary": "Get weather forecast",
+        "operationId": "getWeatherForecast",
+        "parameters": [
+          {
+            "name": "latitude",
+            "in": "query",
+            "required": true,
+            "description": "Geographical WGS84 coordinates of the location (latitude)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "longitude",
+            "in": "query",
+            "required": true,
+            "description": "Geographical WGS84 coordinates of the location (longitude)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "current_weather",
+            "in": "query",
+            "required": false,
+            "description": "Include current weather conditions in the response",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Weather forecast data"
+          }
+        }
+      }
+    }
+  }
+}

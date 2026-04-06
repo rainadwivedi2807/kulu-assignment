@@ -6,14 +6,4 @@ Welcome to the definitive Pokémon API catalogue. You can easily consume the end
 All API requests should be prefixed to this URL:
 `https://pokeapi.co/api/v2/`
 
-## Example Usage
-Here is how you might fetch Pikachu dynamically using global standard Fetch:
 
-```javascript
-const response = await fetch('https://pokeapi.co/api/v2/pokemon/pikachu');
-const data = await response.json();
-console.log(data);
-```
-
-### Rate Limiting
-Please be courteous when polling the API. We restrict IP addresses to 100 API requests per day.
