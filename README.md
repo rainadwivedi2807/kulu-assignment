@@ -73,7 +73,7 @@ src/
 
 ## 🔌 Dynamic API Registration Flow
 
-The entire developer portal — including the API Catalogue sidebar, the Endpoint documentation viewer, and the Interactive Sandbox — is completely data-driven. This means you do not need to build custom UI components to add a new API product.
+The entire developer portal — including the API Catalogue sidebar, the Endpoint documentation viewer, and the Interactive Sandbox — is completely data-driven. 
 
 ### The Flow: How it works under the hood
 
