@@ -37,9 +37,9 @@ export function ChangelogPage() {
 
   const getStyleForType = (type: string) => {
     switch (type.toUpperCase()) {
-      case 'BREAKING': return { icon: <AlertOctagon className="w-5 h-5" />, color: 'red', bg: 'bg-red-50 text-red-600 border-red-100' }
-      case 'FEATURE': return { icon: <Sparkles className="w-5 h-5" />, color: 'indigo', bg: 'bg-indigo-50 text-indigo-600 border-indigo-100' }
-      default: return { icon: <Bug className="w-5 h-5" />, color: 'emerald', bg: 'bg-emerald-50 text-emerald-600 border-emerald-100' }
+      case 'BREAKING': return { icon: <AlertOctagon className="w-5 h-5" />, color: 'red' as const, bg: 'bg-red-50 text-red-600 border-red-100' }
+      case 'FEATURE': return { icon: <Sparkles className="w-5 h-5" />, color: 'blue' as const, bg: 'bg-blue-50 text-blue-600 border-blue-100' }
+      default: return { icon: <Bug className="w-5 h-5" />, color: 'green' as const, bg: 'bg-green-50 text-green-600 border-green-100' }
     }
   }
 
@@ -79,7 +79,7 @@ export function ChangelogPage() {
                <Filter className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                <select 
                   value={filterType}
-                  onChange={e => setFilterType(e.target.value as any)}
+                  onChange={e => setFilterType(e.target.value as EntryType | 'ALL')}
                   className="bg-slate-50/50 hover:bg-slate-50 rounded-[24px] pl-12 pr-10 py-4 outline-none appearance-none cursor-pointer font-bold text-slate-600 text-sm border-none focus:ring-2 focus:ring-indigo-100 transition-all"
                >
                   <option value="ALL">All Changes</option>
@@ -127,7 +127,7 @@ export function ChangelogPage() {
 
                      <div className="bg-white hover:bg-slate-50/[0.3] border border-slate-100 rounded-[40px] p-10 shadow-sm transition-all duration-300">
                         <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
-                           <Badge colour={style.color as any}>{entry.type}</Badge>
+                           <Badge colour={style.color}>{entry.type}</Badge>
                            <h2 className="text-2xl font-black text-slate-900 tracking-tight flex-1">
                               {entry.title}
                            </h2>

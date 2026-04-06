@@ -4,7 +4,6 @@ import {
   ShieldX, 
   Clock, 
   History, 
-  ExternalLink,
   ChevronRight,
   TrendingDown,
   AlertTriangle,

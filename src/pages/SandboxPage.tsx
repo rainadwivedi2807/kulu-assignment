@@ -463,7 +463,7 @@ export function SandboxPage() {
                         try {
                           const parsed = JSON.parse(requestBody);
                           setRequestBody(JSON.stringify(parsed, null, 2));
-                        } catch (e) {
+                        } catch {
                           // Ignore if invalid JSON
                         }
                       }}

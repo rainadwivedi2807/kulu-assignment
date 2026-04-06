@@ -18,9 +18,6 @@ import {
   ArrowUpRight, 
   ArrowDownRight,
   Filter,
-  Download,
-  Calendar,
-  Zap,
   Globe
 } from 'lucide-react'
 import { Badge } from '../components/ui'
