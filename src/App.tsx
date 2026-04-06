@@ -6,6 +6,7 @@ import { QueryProvider } from './components/layout/QueryProvider'
 import LoginPage from './pages/LoginPage'
 import { ApiDocPage } from './pages/ApiDocPage'
 import { SandboxPage } from './pages/SandboxPage'
+import { ApiKeyPage } from './pages/ApiKeyPage'
 import { API_REGISTRY } from './apis/api-registry'
 import zapIcon from './assets/zap-icon.svg'
 
@@ -74,12 +75,7 @@ function App() {
                       />
                       <Route
                         path="/keys"
-                        element={
-                          <Page
-                            title="API Key Management"
-                            description="Generate, rotate, and revoke your API keys and access tokens securely."
-                          />
-                        }
+                        element={<ApiKeyPage />}
                       />
                       <Route
                         path="/analytics"

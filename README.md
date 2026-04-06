@@ -111,6 +111,30 @@ Adding a completely new set of endpoints requires exactly zero lines of React/UI
 3. Import that JSON and add a new object to the `API_REGISTRY` array in `src/apis/api-registry.ts`.
 4. **Done:** The Catalogue, Sidebar navigations, and Interactive Sandbox automatically pick it up and surface it to your developers.
 
+---
+
+## 🔐 API Key Security & Network Masking
+
+The API Key Management system implements a **Zero-Trust Zero-Plain-Text** architecture to ensure credentials are never exposed, even in the browser's **Developer Tools (Network Tab)**.
+
+### The "Double-Masking" Flow
+
+1.  **Backend-Only Persistence**: Only the `sha256` hash of the API key is stored in the database. The plain-text secret is never saved to disk.
+2.  **Permanent Masking (Listings)**: When fetching the list of keys, the database only returns the `key_masked` column (e.g., `kulu_sand...e24x`). The full secret is physically absent from the response body.
+3.  **Network-Level Masking (Creation)**: To show the key exactly once during creation without exposing it in the Network Tab JSON:
+    -   **Client-Side Scrambler**: The frontend generates a one-time random string (`clientMask`) in memory:
+        ```javascript
+        const clientMask = Math.random().toString(36).substring(2) + Date.now().toString(36);
+        ```
+    -   **Server-Side Scrambling**: This mask is sent to the Supabase RPC. The database generates the key and returns it under a scrambled field name (`scrambled_key`) after performing a transient obfuscation.
+    -   **Zero-Plain-Text**: Any observer looking at the Network Tab response preview will see a scrambled hexadecimal string or a generic payload instead of a recognizable API key.
+    -   **Frontend Reconstruction**: The React application uses the `clientMask` it still holds in memory to unscramble the secret and display it to the user exactly once.
+
+### Why use the `clientMask`?
+Without the `clientMask` handshake, the backend would have to send the `plain_text_key` in the JSON response. An attacker with a malicious browser extension or someone looking over the shoulder could easily see the secret in the **Response Preview** of the `generate_api_key` call. By using a client-injected scrambler, we ensure that the "On-the-wire" data is unreadable without the ephemeral mask stored in the browser's JS heap.
+
+---
+
 ## Portal Sections
 
 | Section              | Path              |
