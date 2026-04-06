@@ -41,6 +41,9 @@ jobs:
       # 5. Production Build
       - name: Build
         run: npm run build
+        env:
+          VITE_SUPABASE_URL: 'https://placeholder.supabase.co'
+          VITE_SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.placeholder'
 
       # 6. Bundle Size Check (Bonus)
       - name: Bundle Size Check
